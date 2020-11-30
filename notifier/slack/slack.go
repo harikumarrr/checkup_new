@@ -7,7 +7,7 @@ import (
 
 	slack "github.com/ashwanthkumar/slack-go-webhook"
 
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 // Type should match the package name

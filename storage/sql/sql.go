@@ -13,8 +13,8 @@ import (
 	_ "github.com/lib/pq"           // Enable postgresql beckend
 	_ "github.com/mattn/go-sqlite3" // Enable sqlite3 backend
 
-	"github.com/sourcegraph/checkup/storage/fs"
-	"github.com/sourcegraph/checkup/types"
+	"checkup/storage/fs"
+	"checkup/types"
 )
 
 // schema is the table schema expected by the sqlite3 checkup storage.

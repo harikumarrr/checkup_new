@@ -9,8 +9,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/sourcegraph/checkup"
-	"github.com/sourcegraph/checkup/storage/fs"
+	"checkup"
+	"checkup/storage/fs"
 )
 
 var listenAddr string
@@ -79,6 +79,9 @@ func serveHandler(reader checkup.StorageReader) http.HandlerFunc {
 				writeError(w, err)
 				return
 			}
+			//lc := loadCheckup()
+			//c := checkup.Checkup{Storage: lc.Storage, Checkers: lc.Checkers}
+			//c.CheckAndStoreEvery(5 * time.Second)
 			json.NewEncoder(w).Encode(file)
 			return
 		}

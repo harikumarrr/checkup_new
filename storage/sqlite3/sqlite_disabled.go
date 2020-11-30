@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 var errStoreDisabled = errors.New("sqlite data store is disabled")

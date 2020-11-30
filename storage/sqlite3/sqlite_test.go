@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 func TestSQL(t *testing.T) {

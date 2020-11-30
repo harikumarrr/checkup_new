@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/sourcegraph/checkup/notifier/discord"
-	"github.com/sourcegraph/checkup/notifier/mail"
-	"github.com/sourcegraph/checkup/notifier/mailgun"
-	"github.com/sourcegraph/checkup/notifier/pushover"
-	"github.com/sourcegraph/checkup/notifier/slack"
+	"checkup/notifier/discord"
+	"checkup/notifier/mail"
+	"checkup/notifier/mailgun"
+	"checkup/notifier/pushover"
+	"checkup/notifier/slack"
 )
 
 func notifierDecode(typeName string, config json.RawMessage) (Notifier, error) {

@@ -4,12 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"net"
 	"net/http"
 	"strings"
 	"time"
 
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 // Type should match the package name
@@ -97,7 +98,13 @@ func (c Checker) Check() (types.Result, error) {
 	result := types.NewResult()
 	result.Title = c.Name
 	result.Endpoint = c.URL
-
+	if rand.Intn(10)%3 == 0 {
+		result.Tags = types.Tags{Environment:"Production", Owner:"p"}
+	} else if rand.Intn(10)%3 == 1 {
+		result.Tags = types.Tags{Environment:"Staging", Owner:"s"}
+	} else {
+		result.Tags = types.Tags{Environment:"Development", Owner:"d"}
+	}
 	req, err := http.NewRequest("GET", c.URL, nil)
 	if err != nil {
 		return result, err

@@ -43,6 +43,13 @@ type Result struct {
 	// Message is an optional message to show on the status page.
 	// For example, what you're doing to fix a problem.
 	Message string `json:"message,omitempty"`
+
+	Tags   Tags `json:"tags,omitempty"`
+}
+
+type Tags struct {
+	Environment string `json:"environment,omitempty"`
+	Owner   	string `json:"owner,omitempty"`
 }
 
 func NewResult() Result {

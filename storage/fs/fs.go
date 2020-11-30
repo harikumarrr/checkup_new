@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 // Type should match the package name

@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/microsoft/ApplicationInsights-Go/appinsights"
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 const instrumentationKey = "11111111-1111-1111-1111-111111111111"

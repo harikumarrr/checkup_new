@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/microsoft/ApplicationInsights-Go/appinsights"
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 // Type should match the package name

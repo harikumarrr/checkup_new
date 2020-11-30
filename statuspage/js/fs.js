@@ -45,12 +45,25 @@ checkup.storageDriverLocal = (function() {
 				for (var i = 0; i < list.length; i++) {
 					checkup.getJSON(url+'/'+list[i], function(filename) {
 						return function(json, url) {
-							checksLoaded++;
-							resultsLoaded += json.length;
-							if (typeof fileCallback === 'function')
-								fileCallback(json, filename);
-							if (checksLoaded >= list.length && (typeof doneCallback === 'function'))
-								doneCallback(checksLoaded, resultsLoaded);
+							if (checkup.storage.tagFilter && checkup.storage.tagFilter !== "" && checkup.storage.tagFilter !== "All") {
+								for (var l = 0; l < json.length; l++) {
+									if (json[l].tags.environment === checkup.storage.tagFilter) {
+										checksLoaded++;
+										resultsLoaded += json.length;
+										if (typeof fileCallback === 'function')
+											fileCallback(json, filename);
+										if (checksLoaded >= list.length && (typeof doneCallback === 'function'))
+											doneCallback(checksLoaded, resultsLoaded);
+									}
+								}
+							} else {
+								checksLoaded++;
+								resultsLoaded += json.length;
+								if (typeof fileCallback === 'function')
+									fileCallback(json, filename);
+								if (checksLoaded >= list.length && (typeof doneCallback === 'function'))
+									doneCallback(checksLoaded, resultsLoaded);
+							}
 						};
 					}(list[i]));
 				}

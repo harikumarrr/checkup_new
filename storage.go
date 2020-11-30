@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/sourcegraph/checkup/storage/appinsights"
-	"github.com/sourcegraph/checkup/storage/fs"
-	"github.com/sourcegraph/checkup/storage/github"
-	"github.com/sourcegraph/checkup/storage/mysql"
-	"github.com/sourcegraph/checkup/storage/postgres"
-	"github.com/sourcegraph/checkup/storage/s3"
-	"github.com/sourcegraph/checkup/storage/sql"
-	"github.com/sourcegraph/checkup/storage/sqlite3"
+	"checkup/storage/appinsights"
+	"checkup/storage/fs"
+	"checkup/storage/github"
+	"checkup/storage/mysql"
+	"checkup/storage/postgres"
+	"checkup/storage/s3"
+	"checkup/storage/sql"
+	"checkup/storage/sqlite3"
 )
 
 func storageDecode(typeName string, config json.RawMessage) (Storage, error) {

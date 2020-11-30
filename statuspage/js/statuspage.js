@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	checkup.dom.checkcount = document.getElementById("info-checkcount");
 	checkup.dom.lastcheck = document.getElementById("info-lastcheck");
 	checkup.dom.timeline = document.getElementById("timeline");
+	checkup.dom.checkTags = document.getElementById("checkTags");
+
 	// Immediately begin downloading check files, and keep page updated
 	checkup.storage.getChecksWithin(checkup.config.timeframe, processNewCheckFile, allCheckFilesLoaded);
 
@@ -109,6 +111,19 @@ function processNewCheckFile(json, filename) {
 			.map(function(key) { return obj[key]; });
 	};
 
+	if (!checkup.tags) checkup.storage.tags = [];
+	json.forEach(function (check) {
+		if (check.tags) {
+			var isFound = false;
+			checkup.storage.tags.forEach(function (tag) {
+				if (tag === check.tags.environment) {
+					isFound = true;
+				}
+			});
+			if(!isFound) checkup.storage.tags.push(check.tags.environment);
+		}
+	});
+
 	values(checkup.charts)
 		.forEach(function(chart) {
 			values(chart.series)
@@ -117,6 +132,17 @@ function processNewCheckFile(json, filename) {
 
 	if (checkup.domReady)
 		makeGraphs();
+}
+
+function filterChecks() {
+	var selectedTag = document.getElementById("checkTags").value;
+	checkup.storage.tagFilter = selectedTag;
+	checkup.storage.checks = [];
+	checkup.storage.groupedResults = [];
+	checkup.storage.orderedResults = [];
+	checkup.charts = {};
+	checkup.storage.getChecksWithin(checkup.config.timeframe, processNewCheckFile, allCheckFilesLoaded);
+	if (!checkup.graphsMade) makeGraphs();
 }
 
 function allCheckFilesLoaded(numChecksLoaded, numResultsLoaded) {
@@ -179,6 +205,14 @@ function allCheckFilesLoaded(numChecksLoaded, numResultsLoaded) {
 		return hours+":"+checkup.leftpad(d.getMinutes(), 2, "0")+" "+ampm;
 	}
 
+	var selectElement = document.getElementById('checkTags');
+	if (checkup.storage.tags && !checkup.storage.tagAdd) {
+		checkup.storage.tagAdd = true;
+		selectElement.add(new Option("All"));
+		checkup.storage.tags.forEach(function (tag) {
+			selectElement.add(new Option(tag));
+		});
+	}
 	// Render events
 	for (var i = 0; i < newEvents.length; i++) {
 		var e = newEvents[i];
@@ -404,6 +438,9 @@ function renderChart(chart) {
 			tooWide.className = "chart-container chart-50";
 	}
 	el.className = "chart-container "+containerSize;
+	if (checkup.storage.tagFilter) {
+		chart.title = chart.title + " - " + checkup.storage.tagFilter;
+	}
 
 	// Div to contain the endpoint / title
 	var el2 = document.createElement('div');

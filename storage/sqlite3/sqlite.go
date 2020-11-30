@@ -10,8 +10,8 @@ import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/mattn/go-sqlite3"
 
-	"github.com/sourcegraph/checkup/storage/fs"
-	"github.com/sourcegraph/checkup/types"
+	"checkup/storage/fs"
+	"checkup/types"
 )
 
 // New creates a new Storage instance based on json config

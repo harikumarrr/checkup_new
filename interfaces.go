@@ -1,7 +1,7 @@
 package checkup
 
 import (
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 // Checker can create a types.Result.

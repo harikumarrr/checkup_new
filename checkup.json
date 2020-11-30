@@ -1,0 +1,15 @@
+{
+  "checkers": [
+    {
+      "type": "http",
+      "endpoint_name": "Example HTTP",
+      "endpoint_url": "http://www.example.com"
+    }
+  ],
+  "storage" : {
+    "type": "fs",
+    "dir": "storage/fs"
+  },
+  "notifiers": [
+  ]
+}

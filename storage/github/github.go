@@ -14,8 +14,8 @@ import (
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
 
-	"github.com/sourcegraph/checkup/storage/fs"
-	"github.com/sourcegraph/checkup/types"
+	"checkup/storage/fs"
+	"checkup/types"
 )
 
 // Type should match the package name

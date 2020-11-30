@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sourcegraph/checkup/types"
+	"checkup/types"
 )
 
 // New creates a new Notifier instance based on json config
